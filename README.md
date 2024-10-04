@@ -25,3 +25,11 @@ Select only the traces that start or end in JFK/LGA/EWR.
 ```bash
 uv run python filter_bbox.py
 ```
+
+Then collect the data into a Parquet file:
+
+```bash
+uv run python read_trace.py
+```
+
+The generated Parquet file will be in `data/`.
