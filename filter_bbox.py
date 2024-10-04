@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Tuple
 
+# Include traces that start or end in these bboxes
 filter_bboxes = (
     # LGA
     (-73.893251, 40.767887, -73.853588, 40.786629),
@@ -14,9 +15,7 @@ filter_bboxes = (
 
 
 def main():
-    source_dir = Path(
-        "/Users/kyle/Downloads/v2024.04.10-planes-readsb-staging-0/traces"
-    )
+    source_dir = Path("data/traces")
     output_dir = Path("data/filter_bbox")
     output_dir.mkdir(exist_ok=True, parents=True)
 
@@ -37,6 +36,7 @@ def read_trace_file(file: Path) -> dict:
 def include_trace(
     trace: dict, filter_bboxes: Tuple[Tuple[float, float, float, float], ...]
 ) -> bool:
+    """Include this trace if it starts or ends in any of the provided filter_bboxes."""
     records = trace["trace"]
     start_lat = records[0][1]
     start_lon = records[0][2]

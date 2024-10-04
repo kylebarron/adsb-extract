@@ -1,20 +1,16 @@
-[tool.poetry]
+[project]
 name = "adsb-extract"
 version = "0.1.0"
-description = ""
-authors = ["Kyle Barron <kylebarron2@gmail.com>"]
-license = "MIT"
+description = "Add your description here"
 readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "lonboard>=0.9.3",
+    "pyarrow>=17.0.0",
+]
+license = "MIT"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-pyarrow = "^15.0.2"
-lonboard = "^0.8.0"
-
-
-[tool.poetry.group.dev.dependencies]
-ipykernel = "^6.29.4"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+dev-dependencies = [
+    "ipykernel>=6.29.5",
+]
