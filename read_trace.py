@@ -113,3 +113,7 @@ def main():
     data_paths = list(Path("data/filter_bbox").iterdir())
     total_num_coords = count_total_num_coords(data_paths)
     build_arrow_table(data_paths, total_num_coords)
+
+
+if __name__ == "__main__":
+    main()
