@@ -71,8 +71,9 @@ def build_arrow_table(data_paths: list[Path], total_num_coords: int):
     geometry = pa.ListArray.from_arrays(
         coord_offsets, pa.FixedSizeListArray.from_arrays(coords.ravel("C"), 3)
     )
+
     pa_timestamps = pa.ListArray.from_arrays(
-        coord_offsets, pa.array(timestamps, type=pa.timestamp("ms"))
+        coord_offsets, pa.array(timestamps, type=pa.timestamp("ms", tz="utc"))
     )
 
     pa_ground_speeds = pa.ListArray.from_arrays(coord_offsets, ground_speeds)
