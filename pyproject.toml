@@ -4,13 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "lonboard>=0.9.3",
-    "pyarrow>=17.0.0",
-]
+dependencies = ["lonboard>=0.9.3", "pyarrow>=17.0.0", "pyproj>=3.7.0"]
 license = "MIT"
 
 [tool.uv]
-dev-dependencies = [
-    "ipykernel>=6.29.5",
-]
+dev-dependencies = ["ipykernel>=6.29.5"]

@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pyproj
 import pyarrow as pa
 import pyarrow.parquet as pq
 
@@ -81,10 +82,14 @@ def build_arrow_table(data_paths: list[Path], total_num_coords: int):
     pa_vertical_speeds = pa.ListArray.from_arrays(coord_offsets, vertical_speeds)
     pa_icao_ids = pa.array(icao_ids)
 
+    ext_metadata = json.dumps({"crs": pyproj.CRS.from_epsg(4326).to_json_dict()})
     geometry_field = pa.field(
         "geometry",
         geometry.type,
-        metadata={b"ARROW:extension:name": b"geoarrow.linestring"},
+        metadata={
+            b"ARROW:extension:name": b"geoarrow.linestring",
+            b"ARROW:extension:metadata": ext_metadata.encode(),
+        },
     )
     fields = [
         geometry_field,
